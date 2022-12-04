@@ -26,16 +26,16 @@
     {% endif %}
   </div>
   <div class="container container-movies">
-    {% for task in movies: %}
+    {% for movie in movies: %}
     <div>
       <form action="remove" method="POST">
         <button class="remove-button"><img src="/static/assets/trash.svg"></button>
-        <input name="task" type="text" value="{{task}}" hidden>
+        <input name="movie" type="text" value="{{movie}}" hidden>
       </form>
       <div class="movie-info">
-        <div class="name"> {{task.name}} </div>
-        <div class="type"> {{task.movie_type}} </div>
-        <div class="classification classification--{{task.movie_classification}}"> {{task.movie_classification}} </div>
+        <div class="name"> {{movie.name}} </div>
+        <div class="type"> {{movie.movie_type}} </div>
+        <div class="classification classification--{{movie.movie_classification}}"> {{movie.movie_classification}} </div>
       </div>
     </div>
     {% endfor %}
