@@ -32,6 +32,10 @@
         <button class="remove-button"><img src="/static/assets/trash.svg"></button>
         <input name="movie" type="text" value="{{movie}}" hidden>
       </form>
+      <form action="edit_page" method="POST">
+        <button class="edit-button"><img src="/static/assets/edit.svg"></button>
+        <input name="movie" type="text" value="{{movie}}" hidden>
+      </form>
       <div class="movie-info">
         <div class="name"> {{movie.name}} </div>
         <div class="type"> {{movie.movie_type}} </div>

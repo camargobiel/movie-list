@@ -111,3 +111,15 @@ h4 {
 .classification--18 {
   background-color: black;
 }
+
+.edit-button {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  margin-top: 80px;
+  margin-left: 250px;
+}
+
+.edit-button > img {
+  width: 30px;
+}
