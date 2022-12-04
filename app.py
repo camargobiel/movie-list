@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 import ast
+import json
 
 movies = []
 movies_types = ['Terror', 'Ação', 'Animação', 'Comédia', 'Romance', 'Drama']
@@ -9,6 +10,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
+  movies = read_database()
+
   return render_template('home.html', movies=movies)
 
 @app.route('/create', methods=['POST'])
@@ -17,7 +20,7 @@ def create():
   movie_type = request.form['movie_type']
   movie_classification = request.form['movies_classification']
 
-  movies.append({ 'name': movie_name, 'movie_type': movie_type, 'movie_classification': movie_classification})
+  write_database({'name': movie_name, 'movie_type': movie_type, 'movie_classification': movie_classification})
 
   return redirect_to_home()
 
@@ -35,5 +38,22 @@ def remove():
 
 def redirect_to_home():
   return redirect('/', code=302)
+
+def write_database(movie, filename='database.json'):
+  with open(filename, 'r+') as file:
+    file_data = json.load(file)
+    file_data['movies'].append(movie)
+
+    file.seek(0)
+    json.dump(file_data, file, indent=2)
+
+def read_database():
+  database = open('database.json')
+  data = json.load(database)
+  movies = data['movies']
+
+  database.close()
+
+  return movies
 
 app.run(debug=True)
